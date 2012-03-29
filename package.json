@@ -1,0 +1,28 @@
+{
+	"name": "dbhouse",
+	"version": "0.0.1",
+	"description": "DBHouse API",
+	"keywords": [
+		"database",
+		"api"
+	],
+	"author": {
+		"name": "Fred Chien(錢逢祥)",
+		"email": "fred@mandice.com",
+		"web": "http://people.linux.org.tw/~fred/"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:cfsghost/node-dbhouse.git"
+	},
+	"directories": {
+		"tests": "lib"
+	},
+	"engines": {
+		"node": ">= 0.4.0"
+	},
+	"dependencies": {
+		"mongodb": ">= 0.9.9"
+	}
+}
