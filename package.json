@@ -6,6 +6,7 @@
 		"database",
 		"api"
 	],
+	"homepage": "https://github.com/cfsghost/node-dbhouse",
 	"author": {
 		"name": "Fred Chien(錢逢祥)",
 		"email": "fred@mandice.com",
