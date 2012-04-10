@@ -1,21 +1,25 @@
 var MongoDB = require('mongodb');
 
-module.exports = function() {
-	var self = this;
+function DBHouse() {
+	this.driver = null;
 	this.server = null;
+}
+module.exports = DBHouse;
 
-	this.connect = function(driver, options) {
+DBHouse.prototype.connect = function(driver, options) {
+		var Driver;
 
 		switch(driver) {
 		case 'mongodb':
-			self.server = new MongoDB.Server('localhost', 27017, { auto_reconnect: true, poolSize: 10 });
+			Driver = require('./lib/drivers/mongodb');
+			this.driver = new Driver();
+			this.driver.connect();
 			break;
 
 		default:
 			break;
 		}
 	};
-};
 
 module.exports.Database = require('./lib/database');
 
