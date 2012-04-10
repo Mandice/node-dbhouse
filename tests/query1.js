@@ -2,7 +2,7 @@ var DBHouse = require('../index');
 
 /* Create connection with database server */
 var dbHouse = new DBHouse;
-dbHouse.connect();
+dbHouse.connect('mongodb');
 
 /* Create a database operator */
 var db = new DBHouse.Database(dbHouse);
