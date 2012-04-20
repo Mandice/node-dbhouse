@@ -16,6 +16,12 @@ DBHouse.prototype.connect = function(driver, options) {
 			this.driver.connect();
 			break;
 
+		case 'dbhouse':
+			Driver = require('./lib/drivers/dbhouse');
+			this.driver = new Driver();
+			this.driver.connect();
+			break;
+
 		default:
 			break;
 		}
