@@ -6,20 +6,26 @@ function DBHouse() {
 }
 module.exports = DBHouse;
 
-DBHouse.prototype.connect = function(driver, options) {
+DBHouse.prototype.connect = function(driver, options, callback) {
 		var Driver;
 
 		switch(driver) {
 		case 'mongodb':
 			Driver = require('./lib/drivers/mongodb');
 			this.driver = new Driver();
-			this.driver.connect();
+			this.driver.connect(options, function() {
+				if (callback)
+					callback();
+			});
 			break;
 
 		case 'dbhouse':
 			Driver = require('./lib/drivers/dbhouse');
 			this.driver = new Driver();
-			this.driver.connect();
+			this.driver.connect(options, function() {
+				if (callback)
+					callback();
+			});
 			break;
 
 		default:
