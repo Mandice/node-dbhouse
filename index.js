@@ -34,4 +34,5 @@ DBHouse.prototype.connect = function(driver, options, callback) {
 	};
 
 module.exports.Database = require('./lib/database');
+module.exports.Type = require('./lib/type');
 
