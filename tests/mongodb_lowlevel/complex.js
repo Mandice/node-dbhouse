@@ -34,7 +34,20 @@ var Contact = new DBHouse.Schema({
 		subtype: 'Schema',
 		schema: new DBHouse.Schema({
 			name: { type: 'String' },
-			addr: { type: 'String' }
+			addr: { type: 'String' },
+			updated: { type: 'Date' }
+		})
+	},
+	grade: {
+		type: 'Dict',
+		subtype: 'Integer'
+	},
+	friends: {
+		type: 'Dict',
+		subtype: 'Schema',
+		schema: new DBHouse.Schema({
+			age: { type: 'String' },
+			birth: { type: 'Date' }
 		})
 	}
 });
@@ -64,9 +77,28 @@ console.log('Compile Object');
 			new Date().getTime() + 1000,
 		],
 		address: [
-			{ name: 'Home', addr: 'Taiwan' },
-			{ name: 'Company', addr: 'China' }
-		]
+			{ name: 'Home', addr: 'Taiwan', updated: new Date().getTime() },
+			{ name: 'Company', addr: 'China', updated: new Date().getTime() }
+		],
+		grade: {
+			Chinese: 60,
+			Math: 50,
+			English: 40
+		},
+		friends: {
+			Wesley: {
+				age: 26,
+				birth: new Date().getTime()
+			},
+			Louis: {
+				age: 25,
+				birth: new Date().getTime()
+			},
+			Rence: {
+				age: 27,
+				birth: new Date().getTime()
+			}
+		}
 	});
 
 	console.log(result);
