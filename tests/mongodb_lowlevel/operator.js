@@ -9,7 +9,15 @@ var Contact = new DBHouse.Schema({
 	email: { type: 'String' },
 	tel: { type: 'String' },
 	age: { type: 'Integer' },
-	created: { type: 'Date' }
+	created: { type: 'Date' },
+	list: {
+		type: 'Array',
+		subtype: 'Schema',
+		schema: new DBHouse.Schema({
+			name: 'String',
+			created: 'Date'
+		})
+	}
 });
 
 var Model = new DBHouse.Model(Contact);
