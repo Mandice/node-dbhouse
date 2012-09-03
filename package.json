@@ -1,21 +1,21 @@
 {
 	"name": "dbhouse",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"description": "DBHouse API",
 	"keywords": [
 		"database",
 		"api"
 	],
-	"homepage": "https://github.com/cfsghost/node-dbhouse",
+	"homepage": "https://github.com/mandice/node-dbhouse",
 	"author": {
 		"name": "Fred Chien(錢逢祥)",
 		"email": "fred@mandice.com",
-		"web": "http://people.linux.org.tw/~fred/"
+		"web": "http://fred-zone.blogspot.com/"
 	},
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:cfsghost/node-dbhouse.git"
+		"url": "git@github.com:mandice/node-dbhouse.git"
 	},
 	"directories": {
 		"tests": "lib"
