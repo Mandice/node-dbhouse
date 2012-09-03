@@ -7,13 +7,15 @@ dbHouse.connect('mongodb', { host: 'localhost', port: 27017 }, function() {
 	/* Create a database operator */
 	var db = new DBHouse.Database(dbHouse);
 
-	/* If set, DBHouse will generate UUID to be _id, not use the default _id(eg, MongoDB's ObjectID) */
-	db.idType = DBHouse.Database.IDType.UUID;
 	db.open('dbhouse')
 		.collection('users')
 		.insert({
 			name: 'Fred Chien',
-			email: 'fred@mandice.com'
+			email: 'fred@mandice.com',
+			address: [
+				{ type: 'Home', addr: 'Taiwan' },
+				{ type: 'Company', addr: 'Taipei' }
+			]
 		}, function(err, data) {
 			if (err)
 				throw err;

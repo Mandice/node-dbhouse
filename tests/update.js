@@ -9,9 +9,10 @@ dbHouse.connect('mongodb', { host: 'localhost', port: 27017 }, function() {
 	db.open('dbhouse')
 		.collection('users')
 		.where({
-			name: 'Fred Chien'
+			name: 'Fred Chien',
+			'address.type': 'Home'
 		})
-		.update({ tel: '0926333572' }, function(err) {
+		.update({ tel: '0926333572', 'address.$.addr': 'Japan' }, function(err) {
 			if (err)
 				throw err;
 		});

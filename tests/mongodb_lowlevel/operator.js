@@ -14,6 +14,7 @@ var Contact = new DBHouse.Schema({
 		type: 'Array',
 		subtype: 'Schema',
 		schema: new DBHouse.Schema({
+			_id: { type: 'UUID' },
 			name: { type: 'String' },
 			created: { type: 'Date' }
 		})
@@ -101,7 +102,21 @@ console.log('--');
 
 console.log('Using $ operator');
 var result = _compile.compile(Model, {
+	'list.$._id': 'NRnSsO6YEeGR+rWcknSojw==',
+	'list.$.name': 'Test Man',
 	'list.$.created': new Date().getTime()
+});
+
+console.log(result);
+console.log('--');
+
+console.log('Using $ operator with $set command');
+var result = _compile.compile(Model, {
+	$set: {
+		'list.$._id': 'NRnSsO6YEeGR+rWcknSojw==',
+		'list.$.name': 'Test Man',
+		'list.$.created': new Date().getTime()
+	}
 });
 
 console.log(result);
@@ -109,6 +124,8 @@ console.log('--');
 
 console.log('query list without $ operator');
 var result = _compile.compile(Model, {
+	'list._id': 'NRnSsO6YEeGR+rWcknSojw==',
+	'list.name': 'Test Man',
 	'list.created': new Date().getTime()
 });
 
