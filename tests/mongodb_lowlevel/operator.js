@@ -106,3 +106,11 @@ var result = _compile.compile(Model, {
 
 console.log(result);
 console.log('--');
+
+console.log('query list without $ operator');
+var result = _compile.compile(Model, {
+	'list.created': new Date().getTime()
+});
+
+console.log(result);
+console.log('--');
