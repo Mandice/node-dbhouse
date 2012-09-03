@@ -14,8 +14,8 @@ var Contact = new DBHouse.Schema({
 		type: 'Array',
 		subtype: 'Schema',
 		schema: new DBHouse.Schema({
-			name: 'String',
-			created: 'Date'
+			name: { type: 'String' },
+			created: { type: 'Date' }
 		})
 	}
 });
@@ -97,4 +97,12 @@ var result = _compile.compile(Model, {
 
 console.log(result);
 console.log(result.created.$in[0]);
+console.log('--');
+
+console.log('Using $ operator');
+var result = _compile.compile(Model, {
+	'list.$.created': new Date().getTime()
+});
+
+console.log(result);
 console.log('--');
