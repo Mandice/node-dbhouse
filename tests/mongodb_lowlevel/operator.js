@@ -131,3 +131,19 @@ var result = _compile.compile(Model, {
 
 console.log(result);
 console.log('--');
+
+console.log('query list with $slice operator');
+var result = _compile.compile(Model, {
+	'list': { $slice: 10 },
+});
+
+console.log(result);
+console.log('--');
+
+console.log('query list with $slice operator and parameter');
+var result = _compile.compile(Model, {
+	'list': { $slice: [ 10, 20 ] },
+});
+
+console.log(result);
+console.log('--');
