@@ -16,7 +16,8 @@ var Contact = new DBHouse.Schema({
 		schema: new DBHouse.Schema({
 			_id: { type: 'UUID' },
 			name: { type: 'String' },
-			created: { type: 'Date' }
+			created: { type: 'Date' },
+			counter: { type: 'Integer' }
 		})
 	}
 });
@@ -146,4 +147,42 @@ var result = _compile.compile(Model, {
 });
 
 console.log(result);
+console.log('--');
+
+console.log('query list with $slice operator and parameter');
+var result = _compile.compile(Model, {
+	'list': { $slice: [ 10, 20 ] },
+});
+
+console.log(result);
+console.log('--');
+
+console.log('query list with complex operator and wrong data type');
+var result = _compile.compile(Model, {
+	$pull: {
+		list: {
+			counter: { $in: [ '222', '333' ] }
+		}
+	}
+});
+
+console.log(result);
+console.log(result.$pull.list.counter.$in);
+console.log('--');
+
+console.log('query list with $pushAll');
+var result = _compile.compile(Model, {
+	$pushAll: {
+		list: [
+			{
+				name: 'Fred',
+				created: new Date().getTime(),
+				counter: 10
+			}
+		]
+	}
+});
+
+console.log(result);
+console.log(result.$pushAll.list);
 console.log('--');
