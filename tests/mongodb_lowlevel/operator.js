@@ -186,3 +186,19 @@ var result = _compile.compile(Model, {
 console.log(result);
 console.log(result.$pushAll.list);
 console.log('--');
+
+console.log('mixing $and and $not');
+var result = _compile.compile(Model, {
+	$and: [
+		{
+			name: {
+				$not: 'Fred'
+			}
+		}
+	]
+});
+
+console.log(result);
+console.log(result.$and);
+
+console.log('--');
