@@ -61,7 +61,7 @@ console.log(result.$or[0].created);
 console.log('--');
 
 console.log('Using $or operator with UUID type fields');
-var id = uuid.v1({}, []);
+var id = new Buffer(uuid.v1({})).toString('base64');
 console.log(id);
 var result = _compile.compile(Model, {
 	'$or': [
