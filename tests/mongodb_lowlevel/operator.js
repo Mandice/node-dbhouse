@@ -72,6 +72,17 @@ var result = _compile.compile(Model, {
 console.log(result);
 console.log('--');
 
+console.log('Using $pushAll operator with UUID type fields');
+var id = new Buffer(uuid.v1({})).toString('base64');
+console.log(id);
+var result = _compile.compile(Model, {
+	'$pushAll': {
+		'_id': [ id ]
+	}
+});
+console.log(result);
+console.log('--');
+
 console.log('Using $in operator with incorrect type value');
 try {
 	var result = _compile.compile(Model, {
