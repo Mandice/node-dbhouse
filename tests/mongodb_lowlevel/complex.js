@@ -49,6 +49,16 @@ var Contact = new DBHouse.Schema({
 			age: { type: 'String' },
 			birth: { type: 'Date' }
 		})
+	},
+	permission:{
+		type: 'Array',
+		subtype: 'Schema',
+		schema: new DBHouse.Schema({
+			user_id: { type: 'UUID' },
+			admin: { type: 'Boolean' },
+			read: { type: 'Boolean' },
+			write: { type: 'Boolean' }
+		})
 	}
 });
 
@@ -98,7 +108,13 @@ console.log('Compile Object');
 				age: 27,
 				birth: new Date().getTime()
 			}
-		}
+		},
+		permission: [{
+			user_id: 'ZWRlZTAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw',
+			admin: true,
+			read: true,
+			write: true
+		}]
 	});
 
 	console.log(result);
