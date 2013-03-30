@@ -213,3 +213,12 @@ console.log(result);
 console.log(result.$and);
 
 console.log('--');
+
+console.log('RegExp');
+var result = _compile.compile(Model, {
+	name: { $regex: /Fred/, $options: 'i' }
+});
+
+console.log(result);
+
+console.log('--');
