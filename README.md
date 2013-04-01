@@ -2,7 +2,7 @@ DBHouse
 ---
 DBHouse is a generic database API framework, it makes developer to be able to access any kinds of database via generic API. API was designed like SQL Syntax and easy-use.
 
-\* Currently, DBHouse only supports MongoDB.
+\* Currently, DBHouse only supports MongoDB with official driver ([node-mongodb-native](https://github.com/mongodb/node-mongodb-native)).
 
 Installation
 -
@@ -15,16 +15,16 @@ Quick Examples
 
 DBHouse is really easy to use, some topic you might be interested, see below:
 
-* [Query](#quick_example_query)
+* [Queries](#quick_example_queries)
 * [Object/Relation Mapping(ORM)](#quick_example_orm)
 * [Creating Database Indexes](#quick_example_create_database_indexes)
 
 ***
 
 <a name="quick_example_query" />
-### Query
+### Queries
 
-The example to show how to query MongoDB with specific condition.
+Peform a simple query and return only one record.
 
 __Example__
 ```js
@@ -138,6 +138,86 @@ dbHouse.connect('mongodb', { host: 'localhost', port: 27017 }, function() {
             .createIndex();
 });
 ```
+
+Documentation
+-
+
+### APIs
+
+__Database Operator__
+* [open](#api_open)
+* [collection](#api_collection)
+* [table](#api_table)
+* [select](#api_select)
+* [where](#api_where)
+
+***
+
+<a name="api_open" />
+### [Database Operator].open(db_name)
+
+Sets specific database as the default (current) database.
+
+Note that DBHouse always attempts to keep connection alive for more queries next time, it means that open() doesn't re-create a new connection every time if connection is still alive.
+
+***
+
+<a name="api_collection" />
+### [Database Operator].collection(collection_name)
+
+Sets specific collection(table) as current collection(table).
+
+***
+
+<a name="api_table" />
+### [Database Operator].table(table_name)
+
+Same function with collection(), it is just another name for developer who is familar with SQL.
+
+***
+
+<a name="api_select" />
+### [Database Operator].select(fields)
+
+Select the content of columns(fields) from a database.
+
+__Arguments__
+* fields - Object of fields to include or exclude (not both), {‘a’:1}
+
+***
+
+<a name="api_where" />
+### [Database Operator].where(condition)
+
+Select the condition for filtering records.
+
+__Example__
+
+Find records with specific field:
+```js
+var DBHouse = require('dbhouse');
+
+// Create connection with MongoDB
+var dbHouse = new DBHouse;
+dbHouse.connect('mongodb', { host: 'localhost', port: 27017 }, function() {
+
+    // Create a database operator
+    var db = new DBHouse.Database(dbHouse);
+    db.open('mydb')
+        .collection('users')
+        .where({
+            name: 'Fred Chien'
+        })
+        .query(function(err, data) {
+            if (err)
+                throw err;
+
+            console.log(data);
+        });
+});
+```
+
+***
 
 License
 -
