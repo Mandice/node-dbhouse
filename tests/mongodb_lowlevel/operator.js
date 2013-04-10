@@ -1,5 +1,5 @@
 var DBHouse = require('../../index');
-var _compile = require('../../lib/drivers/mongodb/compile');
+var _compile = require('../../lib/drivers/mongodb/compile-new');
 var uuid = require('node-uuid');
 
 /* Define schema */
@@ -145,9 +145,13 @@ console.log(result);
 console.log('--');
 
 console.log('query list with $slice operator');
+try {
 var result = _compile.compile(Model, {
 	'list': { $slice: 10 },
 });
+} catch(err) {
+	console.log(err);
+}
 
 console.log(result);
 console.log('--');
