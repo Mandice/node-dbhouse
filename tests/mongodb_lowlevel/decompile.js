@@ -18,6 +18,7 @@ Model.init();
 console.log('Compile Object');
 try {
 	var result = _compile.compile(Model, {
+		_id: 'NRnSsO6YEeGR-rWcknSojw',
 		name: 'Fred',
 		email: 'fred@mandice.com',
 		tel: '092x333555',

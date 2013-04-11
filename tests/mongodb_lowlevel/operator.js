@@ -1,5 +1,5 @@
 var DBHouse = require('../../index');
-var _compile = require('../../lib/drivers/mongodb/compile-new');
+var _compile = require('../../lib/drivers/mongodb/compile');
 var uuid = require('node-uuid');
 
 /* Define schema */
@@ -173,6 +173,7 @@ console.log(result);
 console.log('--');
 
 console.log('query list with complex operator and wrong data type');
+try {
 var result = _compile.compile(Model, {
 	$pull: {
 		list: {
@@ -180,9 +181,11 @@ var result = _compile.compile(Model, {
 		}
 	}
 });
+} catch(err) {
+	console.log(err);
+}
 
 console.log(result);
-console.log(result.$pull.list.counter.$in);
 console.log('--');
 
 console.log('query list with $pushAll');

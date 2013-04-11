@@ -46,7 +46,7 @@ var Contact = new DBHouse.Schema({
 		type: 'Dict',
 		subtype: 'Schema',
 		schema: new DBHouse.Schema({
-			age: { type: 'String' },
+			age: { type: 'Integer' },
 			birth: { type: 'Date' }
 		})
 	},
@@ -86,12 +86,13 @@ console.log('Compile Object');
 			new Date().getTime(),
 			new Date().getTime() + 1000,
 		],
+
 		address: [
 			{ name: 'Home', addr: 'Taiwan', updated: new Date().getTime() },
 			{ name: 'Company', addr: 'China', updated: new Date().getTime() }
 		],
 		grade: {
-			Chinese: 60,
+			Chinese: 30,
 			Math: 50,
 			English: 40
 		},
