@@ -1,6 +1,7 @@
 var DBHouse = require('../../index');
 var _compile = require('../../lib/drivers/mongodb/compile');
 var uuid = require('node-uuid');
+var util = require('util');
 
 /* Define schema */
 var Contact = new DBHouse.Schema({
@@ -118,7 +119,7 @@ console.log('Compile Object');
 		}]
 	});
 
-	console.log(result);
+	console.log(util.inspect(result, false, null));
 //} catch(err) {
 //	console.log(err);
 //}
@@ -129,7 +130,7 @@ console.log('Decompile Object');
 try {
 	var source = _compile.decompile(Model, result);
 
-	console.log(source);
+	console.log(util.inspect(source, false, null));
 } catch(err) {
 	console.log(err);
 }
