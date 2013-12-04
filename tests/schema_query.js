@@ -15,7 +15,7 @@ var Contact = new DBHouse.Schema({
 	name: { type: 'String' },
 	email: { type: 'String' },
 	tel: { type: 'String' },
-	created: { type: 'Date' },
+	created: { type: 'Date', default: Date.now },
 	address: { type: 'Schema', schema: Address }
 });
 

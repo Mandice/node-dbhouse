@@ -1,3 +1,4 @@
+var vm = require('vm');
 var DBHouse = require('../../index');
 var _compile = require('../../lib/drivers/mongodb/compile');
 var uuid = require('node-uuid');
@@ -10,7 +11,7 @@ var Contact = new DBHouse.Schema({
 	email: { type: 'String' },
 	tel: { type: 'String' },
 	age: { type: 'Integer' },
-	created: { type: 'Date' },
+	created: { type: 'Date', default: Date.now },
 	parents: {
 		type: 'Schema',
 		schema: new DBHouse.Schema({
@@ -23,7 +24,8 @@ var Contact = new DBHouse.Schema({
 					age: { type: 'Integer' },
 					birth: { type: 'Date' }
 				})
-			}
+			},
+			updated: { type: 'Date', default: Date.now }
 		})
 	},
 	logs: {
@@ -36,7 +38,7 @@ var Contact = new DBHouse.Schema({
 		schema: new DBHouse.Schema({
 			name: { type: 'String' },
 			addr: { type: 'String' },
-			updated: { type: 'Date' }
+			updated: { type: 'Date', default: Date.now }
 		})
 	},
 	grade: {
@@ -73,7 +75,6 @@ console.log('Compile Object');
 		email: 'fred@mandice.com',
 		tel: '092x333555',
 		age: 26,
-		created: new Date().getTime(),
 		parents: {
 			mother: 'May',
 			father: 'Charles',
@@ -90,7 +91,7 @@ console.log('Compile Object');
 
 		address: [
 			{ name: 'Home', addr: 'Taiwan', updated: new Date().getTime() },
-			{ name: 'Company', addr: 'China', updated: new Date().getTime() }
+			{ name: 'Company', addr: 'China' }
 		],
 		grade: {
 			Chinese: 30,
@@ -117,7 +118,7 @@ console.log('Compile Object');
 			read: true,
 			write: true
 		}]
-	});
+	}, { applyDefaults: true });
 
 	console.log(util.inspect(result, false, null));
 //} catch(err) {
@@ -135,4 +136,3 @@ try {
 	console.log(err);
 }
 
-console.log('--');
