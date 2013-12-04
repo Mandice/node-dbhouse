@@ -1,6 +1,6 @@
 {
 	"name": "dbhouse",
-	"version": "0.0.24",
+	"version": "0.0.25",
 	"description": "Generic Database API Framework",
 	"keywords": [
 		"database",
